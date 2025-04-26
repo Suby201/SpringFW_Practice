@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- StringPrinter 클래스를 Spring Bean으로 설정 -->
+	<bean id="strPrinter" class="myspring.di.xml.StringPrinter" />
+	<!-- consolePrinter를 spring bean으로 설정 -->
+	<bean id="conPrinter" class="myspring.di.xml.ConsolePrinter" />
+
+	<bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
+		<property name="name" value="Spring" />
+		<property name="printer" ref="strPrinter" />
+	</bean>
+	<bean id="helloC" class="myspring.di.xml.Hello">
+		<constructor-arg index="0" value="SpringC"/>
+		<constructor-arg index="1" ref="conPrinter"/>
+		<property name="names">
+			<list>
+				<value>SpringFW</value>
+				<value>SpringBoot</value>
+				<value>SpringCloud</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Auto component scanning 설정 -->
+	<context:component-scan base-package="myspring.di.annot"/>
+	
+	<!-- values.properties 파일의 정보 설정 -->
+	<context:property-placeholder location="classpath:values.properties"/>
+</beans>
+
+
