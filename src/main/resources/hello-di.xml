@@ -11,7 +11,7 @@
 	<bean id="conPrinter" class="myspring.di.xml.ConsolePrinter" />
 
 	<bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
-		<property name="name" value="Spring" />
+		<property name="name" value="${myName1}" />
 		<property name="printer" ref="strPrinter" />
 	</bean>
 	<bean id="helloC" class="myspring.di.xml.Hello">
